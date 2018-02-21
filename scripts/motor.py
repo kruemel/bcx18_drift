@@ -52,6 +52,8 @@ def twist_callback(msg):
     lin = linear_mapping(msg.linear.x, -1.0, 1.0, SERVO_MIN, SERVO_MAX)
     ang = linear_mapping(msg.angular.z, -1.0, 1.0, SERVO_MIN, SERVO_MAX)
 
+    rospy.loginfo('twist lin: %f ang: %f', lin, ang)
+
     if last_ang != ang:
         last_ang = ang
         pwm_steer.set_duty_cycle(ang)
@@ -100,6 +102,7 @@ while not rospy.is_shutdown():
         stop = True
 
     if stop:
+        rospy.loginfo('Stop triggered!')
         pwm_steer.set_duty_cycle(SERVO_STOP)
         pwm_motor.set_duty_cycle(SERVO_STOP)
 
