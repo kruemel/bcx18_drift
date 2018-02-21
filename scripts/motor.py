@@ -11,9 +11,9 @@ from std_msgs.msg import Empty
 from geometry_msgs.msg import Twist
 
 PWM_STEER_ID = 1
-PWM_MOTOR_ID = 2
-SERVO_MIN = 1.250 #ms
-SERVO_MAX = 1.750 #ms
+PWM_MOTOR_ID = 0
+SERVO_MIN = 1.300 #ms
+SERVO_MAX = 1.700 #ms
 SERVO_STOP = 1.500
 
 last_heartbeat = 0
@@ -46,21 +46,21 @@ def stop_callback(msg):
 def twist_callback(msg):
     global pwm_steer, pwm_motor, stop, last_lin, last_ang
 
-    if stop:
-        return
+#    if stop:
+#        return
 
     lin = linear_mapping(msg.linear.x, -1.0, 1.0, SERVO_MIN, SERVO_MAX)
     ang = linear_mapping(msg.angular.z, -1.0, 1.0, SERVO_MIN, SERVO_MAX)
 
     rospy.loginfo('twist lin: %f ang: %f', lin, ang)
 
-    if last_ang != ang:
-        last_ang = ang
-        pwm_steer.set_duty_cycle(ang)
+   # if last_ang != ang:
+    last_ang = ang
+    pwm_steer.set_duty_cycle(ang)
 
-    if last_lin != lin:
-        last_lin = lin
-        pwm_motor.set_duty_cycle(lin)
+    #if last_lin != lin:
+    last_lin = lin
+    pwm_motor.set_duty_cycle(lin)
 
     return
 
@@ -101,10 +101,10 @@ while not rospy.is_shutdown():
     if rospy.Time.now() >= stop_time:
         stop = True
 
-    if stop:
-        rospy.loginfo('Stop triggered!')
-        pwm_steer.set_duty_cycle(SERVO_STOP)
-        pwm_motor.set_duty_cycle(SERVO_STOP)
+ #   if stop:
+ #       rospy.loginfo('Stop triggered!')
+ #       pwm_steer.set_duty_cycle(SERVO_STOP)
+ #       pwm_motor.set_duty_cycle(SERVO_STOP)
 
     rate.sleep()
 
