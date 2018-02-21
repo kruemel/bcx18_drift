@@ -16,7 +16,7 @@ SERVO_MIN = 1.250 #ms
 SERVO_MAX = 1.750 #ms
 SERVO_STOP = 1.500
 
-last_heartbeat
+last_heartbeat = 0
 stop = False
 pwm_steer = None
 pwm_motor = None
