@@ -73,7 +73,7 @@ def joy_callback(msg):
         twist_msg.angular.z = linear_mapping( msg.axes[3], -1.0, -threshold_angular, -max_angular_vel, -min_angular_vel )
 
     if msg.buttons[1] == 1:
-	pub_stop.publish()
+        pub_stop.publish()
 
     pub_cmd_vel.publish(twist_msg)
     return
