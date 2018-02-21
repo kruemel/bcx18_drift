@@ -66,10 +66,12 @@ def twist_callback(msg):
 navio.util.check_apm()
 
 pwm_steer = navio.pwm.PWM(PWM_STEER_ID)
+pwm_steer.initialize()
 pwm_steer.set_period(50)
 pwm_steer.enable()
 
 pwm_motor = navio.pwm.PWM(PWM_MOTOR_ID)
+pwm_motor.initialize()
 pwm_motor.set_period(50)
 pwm_motor.enable()
 
@@ -106,5 +108,8 @@ while not rospy.is_shutdown():
 
 pwm_steer.disable()
 pwm_motor.disable()
+
+pwm_steer.deinitialize()
+pwm_motor.deinitialize()
 
 rospy.loginfo('Time to rest for motor_node, zzzZZzzzZZZ.')
