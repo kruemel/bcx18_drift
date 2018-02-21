@@ -36,17 +36,17 @@
     </node>
 
     <node
-        pkg="ro_slam_with_uwb" type="xbox_teleop.py" name="xbox_teleop_node"
+        pkg="bcx18_drift" type="xbox_teleop.py" name="xbox_teleop_node"
         output="screen">
 
-        <param name="max_linear_vel" value="0.2" />
-        <param name="min_linear_vel" value="0.05" />
+        <param name="max_linear_vel" value="1" />
+        <param name="min_linear_vel" value="0.3" />
 
-        <param name="max_angular_vel" value="0.75" />
+        <param name="max_angular_vel" value="1" />
         <param name="min_angular_vel" value="0.1" />
 
-        <param name="threshold_linear" value="0.2" />
-        <param name="threshold_angular" value="0.2" />
+        <param name="threshold_linear" value="0.3" />
+        <param name="threshold_angular" value="0.3" />
     </node>
     <!-- -->
 </launch>
