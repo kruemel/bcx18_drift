@@ -36,7 +36,7 @@
     </node>
 
     <node
-        pkg="ro_slam_with_uwb" type="xbox_teleop.py" name="xbox_teleop_node"
+        pkg="bcx18_drift" type="xbox_teleop.py" name="xbox_teleop_node"
         output="screen">
 
         <param name="max_linear_vel" value="0.2" />
