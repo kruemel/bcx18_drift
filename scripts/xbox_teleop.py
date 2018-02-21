@@ -7,6 +7,7 @@ import rospy
 
 from sensor_msgs.msg import Joy
 from geometry_msgs.msg import Twist
+from std_msgs.msg import Empty
 
 
 max_linear_vel = None
@@ -41,6 +42,7 @@ def joy_callback(msg):
     # axes[7]: Left Bottom Stick - Top (+) to bottom (-)
 
     twist_msg = Twist()
+    pub_stop = rospy.Publisher('stop', Empty, queue_size=10) 
 
     # Bewegung ueber die X-Achse
     if msg.axes[1] >= threshold_linear:
@@ -69,6 +71,9 @@ def joy_callback(msg):
     # Mit dem Uhrzeigersinn
     if msg.axes[3] <= -threshold_angular:
         twist_msg.angular.z = linear_mapping( msg.axes[3], -1.0, -threshold_angular, -max_angular_vel, -min_angular_vel )
+
+    if msg.buttons[1] == 1:
+	pub_stop.publish()
 
     pub_cmd_vel.publish(twist_msg)
     return
