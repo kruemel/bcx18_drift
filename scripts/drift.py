@@ -40,8 +40,8 @@ def start_callback(msg):
 def control_rover(steer, motor):
     global pwm_steer, pwm_motor
     
-    #pwm_steer.set_duty_cycle(steer)
-    #pwm_motor.set_duty_cycle(motor)
+    pwm_steer.set_duty_cycle(steer)
+    pwm_motor.set_duty_cycle(motor)
     return
 
 navio.util.check_apm()
