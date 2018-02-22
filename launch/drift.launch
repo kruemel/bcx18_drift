@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<launch>
+    <node
+        pkg="bcx18_drift" type="drift.py" name="drift_node"
+        output="screen">
+    </node>
+</launch>
